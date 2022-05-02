@@ -22,7 +22,11 @@ void Calc::Operation()
 	else if (op == '-') rez = a - b;
 	else if (op == '*') rez = a * b;
 	else if (op == '%') rez = a % b;
-	//GetRez();
+	else
+	{
+		cout << "\nundefined operator\n";
+		Operation();
+	}
 }
 
 void Calc::InOp(int rez, char op, int b)
@@ -32,7 +36,11 @@ void Calc::InOp(int rez, char op, int b)
 	else if (op == '-') this->rez = rez - b;
 	else if (op == '*') this->rez = rez * b;
 	else if (op == '%') this->rez = rez % b;
-	//GetRez();
+	else
+	{
+		cout << "\nundefined operator\n";
+		NextOperation();
+	}
 }
 
 void Calc::NextOperation()
