@@ -1,18 +1,13 @@
 #include "Object.h"
+
 using namespace std;
+
 Object::Object(Object* parent, string name)
 {
 	this->parent = NULL;
 	this->name = "root";
 	set_parent(parent);
 	set_name(name);
-}
-
-Object::Object(Object*, string name, int status)
-{
-	this->parent = parent; 
-	this->name = name;      
-	this->status = status;
 }
 
 void Object::set_parent(Object* p_parent)
@@ -26,43 +21,47 @@ void Object::set_parent(Object* p_parent)
 		}
 	}
 	parent = p_parent;
-	if (parent)
-		parent->children.push_back(this);
+	if (parent) parent->children.push_back(this);
 }
+
 Object* Object::get_parent()
 {
 	return this->parent;
 }
+
 void Object::set_name(string name)
 {
 	this->name = name;
 }
+
 string Object::get_name()
 {
 	return name;
 }
-void Object::print() // изменил
+
+void Object::print_child()
+{
+	if (!this->children.size()) return;        
+
+	for (int i = 0; i < this->children.size(); ++i)
+	{
+		if(i >= 1) cout << "\n";
+		cout << "        " << this->children[i]->get_name();
+	}
+}
+
+void Object::print()
 {
 	if (!this->children.size()) return;
 
-	cout << this->name;
-	for (int i = 0; i < this->children.size(); ++i)
+	cout << this->name;//  Р’С‹РІРѕРґРёРј РёРјСЏ РґР°РЅРЅРѕР№ РІРµСЂС€РёРЅС‹         
+
+	for (int i = 0; i < this->children.size(); ++i) //  Р’С‹РІРѕРґРёРј РёРјРµРЅР° РґРµС‚РµР№
 	{
-		cout << "\n";// заменить на \n\t
-		cout << "\t";
-		cout << this->children[i]->get_name();
+		cout << "\n";
+		cout << "    " << this->children[i]->get_name() << "\n";
+		this->children[i]->print_child();
 	}
-	bool w = false;
-	for (int i = 0; i < this->children.size(); ++i)
-	{
-		if (this->children[i]->children.size() && !w)
-		{
-			cout << " ";
-			w = true;
-		}
-		this->children[i]->print();
-	}
-	return;
 }
 
 void Object::set_status(int status)
@@ -73,10 +72,10 @@ void Object::set_status(int status)
 void Object::print_status_tree()
 {
 	cout << "The object " << this->name;
-	if (this->status != 0) cout << " is ready"; //  Проверяем, готов ли объект, и выводим соответствующую информацию         
+	if (this->status != 0) cout << " is ready"; //  ГЏГ°Г®ГўГҐГ°ГїГҐГ¬, ГЈГ®ГІГ®Гў Г«ГЁ Г®ГЎГєГҐГЄГІ, ГЁ ГўГ»ГўГ®Г¤ГЁГ¬ Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГіГѕ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ         
 	else cout << " is not ready";
 	if (this->children.size()) cout << "\n";
-	for (int i = 0; i < this->children.size(); ++i) //  Выводим имена детей, раздлеяя их двумя пробелами         
+	for (int i = 0; i < this->children.size(); ++i) //  Г‚Г»ГўГ®Г¤ГЁГ¬ ГЁГ¬ГҐГ­Г  Г¤ГҐГІГҐГ©, Г°Г Г§Г¤Г«ГҐГїГї ГЁГµ Г¤ГўГіГ¬Гї ГЇГ°Г®ГЎГҐГ«Г Г¬ГЁ         
 	{
 		this->children[i]->print_status_tree();
 		if (i != this->children.size() - 1) cout << "\n";
