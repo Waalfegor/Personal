@@ -43,14 +43,14 @@ void Object::print_child()
 {
 	if (!this->children.size()) return;        
 
-	for (int i = 0; i < this->children.size(); ++i)
+	for (int i = 0; i < this->children.size(); ++i) //  Выводим имена детей
 	{
 		if(i >= 1) cout << "\n";
 		cout << "        " << this->children[i]->get_name();
 	}
 }
 
-void Object::print()
+void Object::print() // из ворда
 {
 	if (!this->children.size()) return;
 
@@ -64,23 +64,53 @@ void Object::print()
 	}
 }
 
+void Object::is_ready()
+{
+	if (parent)
+	{
+		if (parent->status == 0) cout << " is not ready";
+		else if (status == 0) cout << " is not ready";
+		else cout << " is ready";
+	}
+	else 
+	{
+		if (status == 0) cout << " is not ready";
+		else cout << " is ready";
+	}
+}
+
 void Object::set_status(int status)
 {
 	this->status = status;
 }
 
-void Object::print_status_tree()
+void Object::print_status_child()
 {
-	cout << "The object " << this->name;
-	if (this->status != 0) cout << " is ready"; //  Ïðîâåðÿåì, ãîòîâ ëè îáúåêò, è âûâîäèì ñîîòâåòñòâóþùóþ èíôîðìàöèþ         
-	else cout << " is not ready";
-	if (this->children.size()) cout << "\n";
-	for (int i = 0; i < this->children.size(); ++i) //  Âûâîäèì èìåíà äåòåé, ðàçäëåÿÿ èõ äâóìÿ ïðîáåëàìè         
+	if (!this->children.size()) return;
+
+	for (int i = 0; i < this->children.size(); ++i) //  Выводим имена детей
 	{
-		this->children[i]->print_status_tree();
-		if (i != this->children.size() - 1) cout << "\n";
+		if (i >= 1) cout << "\n";
+		cout << "        " << this->children[i]->get_name();
+		this->children[i]->is_ready();
 	}
-	return;
+}
+
+void Object::print_status_tree() // изменил
+{
+	if (!this->children.size()) return;
+
+	cout << this->name;    //  Выводим имя данной вершины   
+	this->is_ready();
+
+	for (int i = 0; i < this->children.size(); ++i) //  Выводим имена детей
+	{
+		cout << "\n";
+		cout << "    " << this->children[i]->get_name();
+		this->children[i]->is_ready();
+		cout << "\n";
+		this->children[i]->print_status_child();
+	}
 }
 
 void Object::add_child(Object* h)
