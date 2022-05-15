@@ -54,3 +54,62 @@ The object object_4 is not ready
 The object object_5 is ready
 The object object_6 is ready
 The object object_3 is ready
+
+================================================================================
+Последняя отладка
+
+// входные
+
+app_root
+app_root object_01 3
+app_root object_02 2
+object_02 object_04 3
+object_02 object_05 5
+object_01 object_07 2
+endtree
+
+// выход
+
+app_root  object_01  object_02
+object_01  object_07object_02  object_04  object_05
+
+///////////////////////////////////////
+
+bool w = false;
+	for (int i = 0; i < this->children.size(); ++i)
+	{
+		if (this->children[i]->children.size() && !w)
+		{
+			//cout << "\n";
+			w = true;
+		}
+		this->children[i]->print();
+	}
+	return;
+
+//////////////////////////////////// good version 1
+
+void Object::print_child()
+{
+	if (!this->children.size()) return;        
+
+	for (int i = 0; i < this->children.size(); ++i) //  Выводим имена детей
+	{
+		cout << "\n";
+		cout << "\t" << this->children[i]->get_name() << "\n";
+	}
+}
+
+void Object::print() // из ворда
+{
+	if (!this->children.size()) return;
+
+	cout << this->name;//  Выводим имя данной вершины         
+
+	for (int i = 0; i < this->children.size(); ++i) //  Выводим имена детей
+	{
+		cout << "\n";
+		cout << "\t" << this->children[i]->get_name() << "\n";
+		this->children[i]->print_child();
+	}
+}
