@@ -36,7 +36,7 @@ void Application::build_Tree() // заменил на build_tree из app.cpp
     {
         cin >> s1;
 
-        if (s1 == "endtree") break;
+        if (s1 == "endtree") break; // изменить для авроры условие остановки!
 
         cin >> status;
 
