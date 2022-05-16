@@ -1,9 +1,12 @@
 #ifndef OBJECT_H
 #define OBJECT_H
+
 #include <iostream>
 #include <vector>
 #include <string>
+
 using namespace std;
+
 class Object
 {
 private:
@@ -15,7 +18,6 @@ private:
 protected:
 
 	std::vector<Object*> children;
-
 
 public:
 	
