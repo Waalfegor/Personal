@@ -1,7 +1,5 @@
 #include "Object.h"
 
-using namespace std;
-
 Object::Object(Object* parent, string name)
 {
 	this->parent = NULL;
@@ -21,7 +19,8 @@ void Object::set_parent(Object* p_parent)
 		}
 	}
 	parent = p_parent;
-	if (parent) parent->children.push_back(this);
+	if (parent)
+		parent->children.push_back(this);
 }
 
 Object* Object::get_parent()
@@ -53,6 +52,8 @@ void Object::print_child()
 void Object::print() // из ворда
 {
 	if (!this->children.size()) return;
+
+	cout << "Object tree\n";
 
 	cout << this->name;//  Выводим имя данной вершины         
 
@@ -92,7 +93,7 @@ void Object::print_status_child()
 	{
 		if (i >= 1) cout << "\n";
 		cout << "        " << this->children[i]->get_name();
-		this->children[i]->is_ready();
+		this->children[i]->is_ready(); //  Проверяем, готов ли объект
 	}
 }
 
@@ -101,13 +102,13 @@ void Object::print_status_tree() // изменил
 	if (!this->children.size()) return;
 
 	cout << this->name;    //  Выводим имя данной вершины   
-	this->is_ready();
+	this->is_ready();//  Проверяем, готов ли объект
 
 	for (int i = 0; i < this->children.size(); ++i) //  Выводим имена детей
 	{
 		cout << "\n";
 		cout << "    " << this->children[i]->get_name();
-		this->children[i]->is_ready();
+		this->children[i]->is_ready(); //  Проверяем, готов ли объект
 		cout << "\n";
 		this->children[i]->print_status_child();
 	}
