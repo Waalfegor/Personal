@@ -1,10 +1,5 @@
 #include "Object.h"
 #include "Application.h"
-#include "Secondary.h"
-#include "Third.h"
-#include "Fourth.h"
-#include "Fifth.h"
-#include "Sixth.h"
 
 using namespace std;
 
