@@ -13,7 +13,7 @@ private:
 
 	string name;
 	Object* parent;
-	int status;
+	int status = 0;
 
 protected:
 
