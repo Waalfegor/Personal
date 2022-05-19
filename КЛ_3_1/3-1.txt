@@ -1,3 +1,31 @@
+/////////////////// Заменить это в Application.h /////////////////
+
+while (true)
+    {
+        cin >> s1;
+
+        if (s1 == "endtree") break; // изменить для авроры условие остановки!
+
+        cin >> status;
+
+        Object* b = this->get_by_name(s1);
+
+        b->set_status(status);
+    }
+
+//////////////// на это: //////////////////////////////////////
+
+while (cin >> s1)
+	{
+		cin >> status;
+		Object* b = this->get_by_name(s1);
+		b->set_status(status);
+	}
+
+///////////////////////////////////////////////////////////
+
+Проверка для вижуалки
+
 app_root
 app_root object_01 3
 app_root object_02 2
