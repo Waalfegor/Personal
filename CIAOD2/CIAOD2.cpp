@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include <ctime>
+#include <ctime> 
 
 /////// строки
 extern const int Rows = 5;
@@ -8,7 +8,7 @@ extern const int Cols = 5;
 
 using namespace std;
 
-bool check()
+bool check() // проверка на ввод
 {
     if (!cin)
     {
@@ -18,13 +18,13 @@ bool check()
     return true;
 }
 
-void RandFill(int a[][Cols], int Rows)
+void RandFill(int a[][Cols], int Rows) // рандомное заполнение матрицы
 {
     for (int i = 0; i < Rows; i++)
         for (int j = 0; j < Cols; j++) a[i][j] = rand() % 10 + 1;
 }
 
-void input(int a[][Cols], int Rows)
+void input(int a[][Cols], int Rows) // заполонение матрицы с клавиатуры
 {
     int inputnum;
     for (int i = 0; i < Cols; i++)
@@ -36,7 +36,7 @@ void input(int a[][Cols], int Rows)
         } 
 }
 
-void Output(int a[][Cols], int Rows)
+void Output(int a[][Cols], int Rows) // вывод матрицы
 {
     for (int i = 0; i < Cols; i++) {
         for (int j = 0; j < Rows; j++) {
@@ -46,7 +46,7 @@ void Output(int a[][Cols], int Rows)
     }
 }
 
-int MinNum(int a[][Cols], int Rows)
+int MinNum(int a[][Cols], int Rows) // поиск минимального значения под главной диагональю
 {
     int min = a[1][0];
     for (int i = 0; i < Rows; i++)
@@ -61,8 +61,8 @@ int MinNum(int a[][Cols], int Rows)
 
 
 int main(void) {
-    srand(time(NULL));
-    int a[Rows][Cols];
+    srand(time(NULL)); // для постоянной генерации различных рандомных чисел
+    int a[Rows][Cols]; 
     RandFill(a, Rows);
     Output(a, Rows);
     cout << "\nMinimum number under the main diagonal: " << MinNum(a, Rows) << endl;
