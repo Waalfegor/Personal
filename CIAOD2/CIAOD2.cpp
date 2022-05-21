@@ -51,7 +51,7 @@ int MinNum(int a[][Cols], int Rows,int Cols) // поиск минимально�
     int min = a[1][0];
     for (int i = 0; i < Rows; i++)
     {
-        for (int j = 0; j != i; j++)
+        for (int j = 0;(j != i) && (j < Cols); j++)
         {
             if (a[i][j] < min) min = a[i][j];
         }
