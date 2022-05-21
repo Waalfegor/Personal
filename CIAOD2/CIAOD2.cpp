@@ -1,10 +1,10 @@
-﻿#include <iostream>
-#include <ctime> 
+#include <iostream>
+#include <ctime>
 
 /////// строки
-extern const int Rows = 5;
+extern const int Rows = 3;
 /////// колонки
-extern const int Cols = 5;
+extern const int Cols = 3;
 
 using namespace std;
 
@@ -27,7 +27,7 @@ void RandFill(int a[][Cols], int Rows) // рандомное заполнени�
 bool input(int a[][Cols], int Rows) // заполонение матрицы с клавиатуры
 {
     int inputnum;
-    for (int i = 0; i < Cols; i++)
+    for (int i = 0; i < Rows; i++)
         for (int j = 0; j < Cols; j++) 
         {
             cin >> inputnum;
@@ -35,10 +35,11 @@ bool input(int a[][Cols], int Rows) // заполонение матрицы с 
             else return false;
         } 
 }
+
 void Output(int a[][Cols], int Rows) // вывод матрицы
 {
-    for (int i = 0; i < Cols; i++) {
-        for (int j = 0; j < Rows; j++) {
+    for (int i = 0; i < Rows; i++) {
+        for (int j = 0; j < Cols; j++) {
              cout << "\t" << a[i][j];
             if (j == Cols - 1) cout <<"\n";
         }
