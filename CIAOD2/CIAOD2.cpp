@@ -24,7 +24,7 @@ void RandFill(int a[][Cols], int Rows) // рандомное заполнени�
         for (int j = 0; j < Cols; j++) a[i][j] = rand() % 10 + 1;
 }
 
-void input(int a[][Cols], int Rows) // заполонение матрицы с клавиатуры
+bool input(int a[][Cols], int Rows) // заполонение матрицы с клавиатуры
 {
     int inputnum;
     for (int i = 0; i < Cols; i++)
@@ -32,10 +32,9 @@ void input(int a[][Cols], int Rows) // заполонение матрицы с 
         {
             cin >> inputnum;
             if (check()) a[i][j] = inputnum;
-            else return;
+            else return false;
         } 
 }
-
 void Output(int a[][Cols], int Rows) // вывод матрицы
 {
     for (int i = 0; i < Cols; i++) {
@@ -61,11 +60,15 @@ int MinNum(int a[][Cols], int Rows) // поиск минимального зн�
 
 
 int main(void) {
-    srand(time(NULL)); // для постоянной генерации различных рандомных чисел
-    int a[Rows][Cols]; 
+    srand(time(NULL));// для постоянной генерации различных рандомных чисел
+    int a[Rows][Cols];
     RandFill(a, Rows);
     Output(a, Rows);
     cout << "\nMinimum number under the main diagonal: " << MinNum(a, Rows) << endl;
-    input(a, Rows);
-    cout << "\nMinimum number under the main diagonal: " << MinNum(a, Rows) << endl;
+    if (input(a, Rows))
+    {
+        cout << "\n";
+        Output(a, Rows);
+        cout << "\nMinimum number under the main diagonal: " << MinNum(a, Rows) << endl;
+    }
 }
