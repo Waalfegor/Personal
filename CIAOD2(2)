@@ -33,7 +33,8 @@ bool input(int** a, int Cols, int Rows) // заполонение матрицы
             cin >> inputnum;
             if (check()) a[i][j] = inputnum;
             else return false;
-        } 
+        }
+    return true;    
 }
 
 void Output(int** a, int Cols, int Rows) // вывод матрицы
