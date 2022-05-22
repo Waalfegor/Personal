@@ -60,7 +60,7 @@ int MinNum(int a[][Cols], int Rows,int Cols) // поиск минимально�
 }
 
 
-int main(void) {
+int main() {
     srand(time(NULL));// для постоянной генерации различных рандомных чисел
     int a[Rows][Cols];
     RandFill(a, Rows, Cols);
