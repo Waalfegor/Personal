@@ -34,6 +34,7 @@ bool input(int a[][Cols], int Rows, int Cols) // заполонение матр
             if (check()) a[i][j] = inputnum;
             else return false;
         }
+    return true;
 }
 
 void Output(int a[][Cols], int Rows, int Cols) // вывод матрицы
